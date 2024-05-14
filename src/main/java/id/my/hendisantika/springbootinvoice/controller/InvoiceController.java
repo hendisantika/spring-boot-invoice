@@ -84,4 +84,15 @@ public class InvoiceController {
         }
         return page;
     }
+
+    @PostMapping("/update")
+    public String updateInvoice(
+            @ModelAttribute Invoice invoice,
+            RedirectAttributes attributes
+    ) {
+        invoiceService.updateInvoice(invoice);
+        Long id = invoice.getId();
+        attributes.addAttribute("message", "Invoice with id: '" + id + "' is updated successfully !");
+        return "redirect:getAllInvoices";
+    }
 }
