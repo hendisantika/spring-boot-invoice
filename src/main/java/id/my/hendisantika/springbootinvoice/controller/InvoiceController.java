@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,5 +51,16 @@ public class InvoiceController {
         String message = "Record with id : '" + id + "' is saved successfully !";
         model.addAttribute("message", message);
         return "registerInvoicePage";
+    }
+
+    @GetMapping("/getAllInvoices")
+    public String getAllInvoices(
+            @RequestParam(value = "message", required = false) String message,
+            Model model
+    ) {
+        List<Invoice> invoices = invoiceService.getAllInvoices();
+        model.addAttribute("list", invoices);
+        model.addAttribute("message", message);
+        return "allInvoicesPage";
     }
 }
