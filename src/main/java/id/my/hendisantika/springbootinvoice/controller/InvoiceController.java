@@ -1,10 +1,14 @@
 package id.my.hendisantika.springbootinvoice.controller;
 
+import id.my.hendisantika.springbootinvoice.entity.Invoice;
 import id.my.hendisantika.springbootinvoice.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,6 +35,18 @@ public class InvoiceController {
 
     @GetMapping("/register")
     public String showRegistration() {
+        return "registerInvoicePage";
+    }
+
+    @PostMapping("/save")
+    public String saveInvoice(
+            @ModelAttribute Invoice invoice,
+            Model model
+    ) {
+        invoiceService.saveInvoice(invoice);
+        Long id = invoiceService.saveInvoice(invoice).getId();
+        String message = "Record with id : '" + id + "' is saved successfully !";
+        model.addAttribute("message", message);
         return "registerInvoicePage";
     }
 }
