@@ -1,12 +1,14 @@
 package id.my.hendisantika.springbootinvoice.service;
 
 import id.my.hendisantika.springbootinvoice.entity.Invoice;
+import id.my.hendisantika.springbootinvoice.exception.InvoiceNotFoundException;
 import id.my.hendisantika.springbootinvoice.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +32,14 @@ public class InvoiceService {
 
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findAll();
+    }
+
+    public Invoice getInvoiceById(Long id) {
+        Optional<Invoice> opt = invoiceRepository.findById(id);
+        if (opt.isPresent()) {
+            return opt.get();
+        } else {
+            throw new InvoiceNotFoundException("Invoice with Id : " + id + " Not Found");
+        }
     }
 }
