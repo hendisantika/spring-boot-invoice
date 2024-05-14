@@ -28,4 +28,9 @@ public class InvoiceController {
     public String showHomePage() {
         return "homePage";
     }
+
+    @GetMapping("/register")
+    public String showRegistration() {
+        return "registerInvoicePage";
+    }
 }
