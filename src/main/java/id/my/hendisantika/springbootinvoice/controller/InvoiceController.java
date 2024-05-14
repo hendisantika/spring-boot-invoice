@@ -4,6 +4,7 @@ import id.my.hendisantika.springbootinvoice.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,4 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class InvoiceController {
     private final InvoiceService invoiceService;
+
+    @GetMapping("/")
+    public String showHomePage() {
+        return "homePage";
+    }
 }
