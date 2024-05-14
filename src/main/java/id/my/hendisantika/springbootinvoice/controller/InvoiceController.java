@@ -1,6 +1,7 @@
 package id.my.hendisantika.springbootinvoice.controller;
 
 import id.my.hendisantika.springbootinvoice.entity.Invoice;
+import id.my.hendisantika.springbootinvoice.exception.InvoiceNotFoundException;
 import id.my.hendisantika.springbootinvoice.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -62,5 +64,24 @@ public class InvoiceController {
         model.addAttribute("list", invoices);
         model.addAttribute("message", message);
         return "allInvoicesPage";
+    }
+
+    @GetMapping("/edit")
+    public String getEditPage(
+            Model model,
+            RedirectAttributes attributes,
+            @RequestParam Long id
+    ) {
+        String page = null;
+        try {
+            Invoice invoice = invoiceService.getInvoiceById(id);
+            model.addAttribute("invoice", invoice);
+            page = "editInvoicePage";
+        } catch (InvoiceNotFoundException e) {
+            e.printStackTrace();
+            attributes.addAttribute("message", e.getMessage());
+            page = "redirect:getAllInvoices";
+        }
+        return page;
     }
 }
