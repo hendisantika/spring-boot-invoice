@@ -11,7 +11,7 @@
     />
 </head>
 <body>
-<div class="col-5">
+<div class="col-8">
     <div class="container">
         <div class="card">
             <div class="card-header bg-primary text-white text-center">
@@ -20,37 +20,37 @@
             <div class="card-body">
                 <form id="invoiceForm" method="POST" th:action="@{/invoice/update}" th:object="${invoice}">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <label for="id">ID</label>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <input class="form-control" readonly th:field="*{id}" type="text"/>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <label for="name">NAME</label>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <input class="form-control" th:field="*{name}" type="text"/>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <label for="location">LOCATION</label>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <input class="form-control" th:field="*{location}" type="text"/>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <label for="amount">AMOUNT</label>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <input class="form-control" th:field="*{amount}" type="text"/>
                         </div>
                     </div>

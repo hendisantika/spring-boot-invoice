@@ -33,7 +33,7 @@ import java.util.List;
 public class InvoiceController {
     private final InvoiceService invoiceService;
 
-    @GetMapping("/")
+    @GetMapping
     public String showHomePage() {
         return "homePage";
     }
