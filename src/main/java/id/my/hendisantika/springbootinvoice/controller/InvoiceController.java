@@ -95,4 +95,19 @@ public class InvoiceController {
         attributes.addAttribute("message", "Invoice with id: '" + id + "' is updated successfully !");
         return "redirect:getAllInvoices";
     }
+
+    @GetMapping("/delete")
+    public String deleteInvoice(
+            @RequestParam Long id,
+            RedirectAttributes attributes
+    ) {
+        try {
+            invoiceService.deleteInvoiceById(id);
+            attributes.addAttribute("message", "Invoice with Id : '" + id + "' is removed successfully!");
+        } catch (InvoiceNotFoundException e) {
+            e.printStackTrace();
+            attributes.addAttribute("message", e.getMessage());
+        }
+        return "redirect:getAllInvoices";
+    }
 }
