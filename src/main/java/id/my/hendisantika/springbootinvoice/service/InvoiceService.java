@@ -42,4 +42,8 @@ public class InvoiceService {
             throw new InvoiceNotFoundException("Invoice with Id : " + id + " Not Found");
         }
     }
+
+    public void deleteInvoiceById(Long id) {
+        invoiceRepository.delete(getInvoiceById(id));
+    }
 }
