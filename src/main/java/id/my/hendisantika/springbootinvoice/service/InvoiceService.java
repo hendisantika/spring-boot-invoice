@@ -1,5 +1,6 @@
 package id.my.hendisantika.springbootinvoice.service;
 
+import id.my.hendisantika.springbootinvoice.entity.Invoice;
 import id.my.hendisantika.springbootinvoice.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,4 +21,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
+
+    public Invoice saveInvoice(Invoice invoice) {
+        return invoiceRepository.save(invoice);
+    }
 }
